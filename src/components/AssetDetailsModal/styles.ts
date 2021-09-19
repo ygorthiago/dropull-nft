@@ -5,27 +5,35 @@ export const AssetDetailsContainer = styled.section`
   padding: 1.3rem 0.2rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  max-height: 37.5rem;
+
+  overflow-y: scroll;
 
   background-color: #2A2A2E;
 
-
-  img {
+  > img, video, iframe {
     width: 21rem;
+    height:100%;
     height: 21rem;
 
     border-radius: 1.5rem;
     padding: 0.3rem;
   }
 
-  
-  p {
+  > svg {
     align-self: flex-end;
     margin: 0 10px 10px 0;
     cursor: pointer;
+    color: var(--white);
+    font-size: 1.5rem;
+    transition: all 0.3s;
+    overflow: visible;
+    &:hover {
+      opacity: 0.5;
+    }
   }
-
 `;
 
 export const AssetDetailsInfos = styled.div`
@@ -41,27 +49,40 @@ export const AssetDetailsTitle = styled.h3`
   font-size: 1.25rem;
   line-height: 2rem;
   letter-spacing: 0.01em;
+  padding: 20px;
 `
 
-export const AssetDetailsOwner = styled.div`
+export const AssetPriceContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+
+  h3 {
+    margin-bottom: 0.5rem;
+  }
+`
+
+export const AssetPrice = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 0.3rem 0;
-  background-color: #333333;
-  border-radius: 52px;
-  padding: 0 10px 0 1px;
 
-  img{
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-  }
+  div {
+    display: flex;
+    margin-right: 20px;
 
-  h4 {
-    margin-left: 0.3rem;
-    font-size: 1rem;
-    line-height: 1.75rem;
-    letter-spacing: 0.75px;
+    p {
+      align-self: center;
+      line-height: 0;
+      font-size: 1.2rem;
+      color: var(--radioactiveGreen)
+
+    }
+
+    svg {
+      margin: 0;
+      color: var(--radioactiveGreen)
+    }
   }
-`
+` 
