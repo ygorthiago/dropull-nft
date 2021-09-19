@@ -8,6 +8,35 @@ export const UserProfileContainer = styled.article`
   align-items: center;
 `
 
+export const GoBackContainer = styled.span`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  margin-left: 20px;
+
+  a {
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--radioactiveGreen);
+    cursor: pointer;
+    z-index: 10;
+
+    svg {
+      margin: 0;
+      font-size: 2rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    width: 768px;
+    margin-left: 0;
+
+  }
+`
+
 export const UserProfileCardContainer = styled.section`
   width: 100%;
   display: flex;
@@ -18,12 +47,14 @@ export const UserProfileCardContainer = styled.section`
 
   img {
     width: 100vw;
+    height: 15.625rem;
+    object-fit: cover;
   }
 
   @media (min-width: 768px) {    
     img {
       height: 15.625rem;
-      width: 100%;
+      width: 98vw;
       object-fit: cover;
     }
   }
@@ -41,7 +72,7 @@ export const UserProfileCardInfos = styled.section`
     width: 8.125rem;
     height: 8.125rem;
     border-radius: 50%;
-    box-shadow: 0 0 0 3pt var(--background);
+    box-shadow: 0 0 0 3pt var(--darkerGrey);
     border: 3px solid #13ff00;
   }
 
