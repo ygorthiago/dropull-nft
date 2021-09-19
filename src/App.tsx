@@ -1,10 +1,11 @@
 import React from 'react';
+import Routes from './routes';
 import { GlobalStyle } from './styles/global';
 
 function App() {
   return (
     <div className="App">
-      <h1>Dropull</h1>
+      <Routes />
       <GlobalStyle />
     </div>
   );
