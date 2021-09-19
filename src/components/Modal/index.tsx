@@ -32,7 +32,7 @@ const Modal = ({ children, isOpen, setIsOpen }: IModalProps) => {
           background: '#2A2A2E',
           color: '#000000',
           borderRadius: '8px',
-          width: '21.438rem',
+          width: '25rem',
           border: 'none',
           padding: '0'
         },
