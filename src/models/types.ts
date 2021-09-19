@@ -12,8 +12,15 @@ export interface IAssets {
   asset_contract: IAssetContract
   name: string;
   image_url: string;
+  animation_url: string;
   description: string;
   id: string;
+  last_sale: {
+    payment_token: {
+      eth_price: string
+      usd_price: string
+    }
+  }
 }
 
 interface ICollection {
@@ -24,6 +31,7 @@ interface ICollection {
 interface IAssetContract {
   image_url: string;
   name: string;
+  address: string;
 }
 
 export interface IAssetModal {

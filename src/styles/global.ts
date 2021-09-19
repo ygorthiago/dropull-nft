@@ -2,9 +2,10 @@ import { createGlobalStyle } from 'styled-components'
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --background: #2A2A2E;
+    --darkerGrey: #2A2A2E;
+    --darkGray: #333333;
     --white: #FCFCFC;
-    --radiativeGreen: #13ff00;
+    --radioactiveGreen: #13ff00;
   }
 
   * {
@@ -24,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   body { 
-    background-color: var(--background);
+    background-color: var(--darkerGrey);
     -webkit-font-smoothing: antialiased;
   }
 
@@ -42,6 +43,10 @@ export const GlobalStyle = createGlobalStyle`
     color: var(--white);
   }
 
+  a {
+    text-decoration: none;
+  }
+
   button {
     cursor: pointer;
   }
@@ -49,5 +54,20 @@ export const GlobalStyle = createGlobalStyle`
   [disabled] {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+  
+  *::-webkit-scrollbar {
+    width: 9px;
+    background: rgba(26, 26, 28, 0.5);
+    }
+  *::-webkit-scrollbar-thumb {
+    background: rgba(82, 82, 84, 0.7);
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: rgba(82, 82, 84, 0.9)
+  }
+
+  .ReactModal__Body--open {
+    overflow-y: hidden;
   }
 `
