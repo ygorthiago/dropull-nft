@@ -35,7 +35,7 @@ export function HomePage() {
     <HomePageContainer>
       <SearchInput placeholder="Seach users by address" onClick={() => setIsSearchOpen(true)} />
       <TrendingAssetsContainer>
-        <h2>Trending NTFs</h2>
+        <h2>Trending NFTs</h2>
         <TrendingAssetsList>
           {trendingAssets && trendingAssets.assets.map(asset => {
             return (
