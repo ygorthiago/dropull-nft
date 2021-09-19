@@ -1,34 +1,30 @@
+import { IAssets } from '../../models/types';
+import { AssetOwnerCard } from '../AssetOwnerCard';
 import {
   AssetCardContainer,
-  AssetCardCreatorContainer,
   AssetCardInfos,
   AssetCardTitle
 } from './styles';
 
 interface IAssetCard {
-  assetImage: string;
-  assetName: string;
-  ownerImage: string;
-  ownerName: string;
+  asset: IAssets;
   clickFunction: () => void;
 }
 
 export function AssetCard({
-  assetImage,
-  assetName,
-  ownerImage,
-  ownerName,
+  asset,
   clickFunction
 }: IAssetCard) {
   return (
     <AssetCardContainer onClick={clickFunction}>
-      <img src={assetImage} alt={assetName} />
+      <img src={!!asset.image_url ? asset.image_url : asset.asset_contract.image_url} alt={asset.name} />
       <AssetCardInfos>
-        <AssetCardTitle>{assetName}</AssetCardTitle>
-        <AssetCardCreatorContainer>
-          <img src={ownerImage} alt={ownerName} />
-          <h4>{ownerName}</h4>
-        </AssetCardCreatorContainer>
+        <AssetCardTitle>{asset.name}</AssetCardTitle>
+        <AssetOwnerCard
+          imageUrl={asset.asset_contract.image_url}
+          name={asset.asset_contract.name}
+          address={asset.asset_contract.address}
+        />
       </AssetCardInfos>
     </AssetCardContainer>
   )

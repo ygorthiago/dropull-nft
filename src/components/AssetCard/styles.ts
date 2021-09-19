@@ -16,7 +16,7 @@ export const AssetCardContainer = styled.section`
   margin-bottom: 1.875rem;
 
 
-  img {
+  > img {
     width: 16rem;
     height: 16rem;
 
@@ -45,25 +45,4 @@ export const AssetCardTitle = styled.h3`
   font-size: 1.25rem;
   line-height: 2rem;
   letter-spacing: 0.01em;
-`
-
-export const AssetCardCreatorContainer = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 0.3px;
-
-  img{
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 50%;
-  }
-
-  h4 {
-    margin-left: 0.62rem;
-    font-size: 0.85rem;
-    line-height: 1.75rem;
-    letter-spacing: 0.75px;
-  }
-
 `
