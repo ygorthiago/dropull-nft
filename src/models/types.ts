@@ -26,6 +26,7 @@ export interface IAssets {
 interface ICollection {
   banner_image_url: string;
   large_image_url: string;
+  image_url: string;
 }
 
 interface IAssetContract {

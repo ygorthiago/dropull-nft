@@ -62,7 +62,13 @@ export function UserProfile() {
             </Link>
           </GoBackContainer>
           <UserProfileCardInfos>
-            <img src={userData.collection.large_image_url} alt="" />
+            <img
+              src={userData.collection.large_image_url 
+                ? userData.collection.large_image_url 
+                : userData.collection.image_url
+              }
+              alt={userData.name} 
+            />
             <h2>{userData.name}</h2>
             <legend>{userData.description}</legend>
           </UserProfileCardInfos>
