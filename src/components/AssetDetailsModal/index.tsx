@@ -8,7 +8,7 @@ import {
   AssetDetailsOwner,
   AssetDetailsTitle
 } from './styles';
-export function AssetModal ({
+export function AssetDetailsModal ({
   isOpen,
   setIsOpen,
   asset
