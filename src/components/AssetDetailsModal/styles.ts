@@ -11,7 +11,7 @@ export const AssetDetailsContainer = styled.section`
 
   overflow-y: scroll;
 
-  background-color: #2A2A2E;
+  background-color: var(--darkerGrey);
 
   > img, video, iframe {
     width: 21rem;

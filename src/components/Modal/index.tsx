@@ -29,7 +29,7 @@ const Modal = ({ children, isOpen, setIsOpen }: IModalProps) => {
           bottom: 'auto',
           marginRight: '-50%',
           transform: 'translate(-50%, -50%)',
-          background: '#2A2A2E',
+          background: 'var(--darkerGrey)',
           color: '#000000',
           borderRadius: '8px',
           width: '25rem',

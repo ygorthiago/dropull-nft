@@ -12,7 +12,7 @@ export const SearchInput = styled.input`
   width: 20.438rem;
   height: 2.5rem;
   border-radius: 0.5rem;
-  background-color: #333333;
+  background-color: var(--darkGray);
   color: var(--white);
   border: none;
   padding: 12px;

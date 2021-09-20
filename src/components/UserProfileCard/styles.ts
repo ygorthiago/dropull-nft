@@ -7,7 +7,7 @@ export const UserProfileCardContainer = styled.section`
   justify-content: flex-start;
   align-items: center;
 
-  background-color: #333333;
+  background-color: var(--darkGray);
 
   border-radius: 2rem;
 

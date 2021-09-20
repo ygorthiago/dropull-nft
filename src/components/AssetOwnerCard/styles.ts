@@ -6,7 +6,7 @@ export const AssetOwnerCardContainer = styled(Link)`
   justify-content: flex-start;
   align-items: center;
   margin: 0.5rem 0;
-  background-color: #333333;
+  background-color: var(--darkGray);
   border-radius: 52px;
   padding: 0 10px 0 1px;
 
@@ -31,6 +31,6 @@ export const AssetOwnerCardContainer = styled(Link)`
   transition: all 0.5s;
 
   &:hover {
-    box-shadow: 0 0 0 1pt #13ff00;
+    box-shadow: 0 0 0 1pt var(--radioactiveGreen);
   }
 `

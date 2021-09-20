@@ -8,7 +8,7 @@ export const AssetCardContainer = styled.section`
   justify-content: center;
   align-items: center;
 
-  background-color: #333333;
+  background-color: var(--darkGray);
 
   border-radius: 2rem;
 
@@ -27,7 +27,7 @@ export const AssetCardContainer = styled.section`
   transition: all 0.5s;
 
   &:hover {
-    box-shadow: 0 0 0 1pt #13ff00;
+    box-shadow: 0 0 0 1pt var(--radioactiveGreen);
   }
 `
 

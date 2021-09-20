@@ -73,7 +73,7 @@ export const UserProfileCardInfos = styled.section`
     height: 8.125rem;
     border-radius: 50%;
     box-shadow: 0 0 0 3pt var(--darkerGrey);
-    border: 3px solid #13ff00;
+    border: 3px solid var(--radioactiveGreen);
   }
 
   h2 {

@@ -8,7 +8,7 @@ export const SearchUserModalContainer = styled.section`
   justify-content: center;
   align-items: center;
 
-  background-color: #2A2A2E;
+  background-color: var(--darkerGrey);
   
   svg {
     align-self: flex-end;
