@@ -1,4 +1,5 @@
 import { IAssets } from '../../models/types';
+import { handleAssetMediaType } from '../../utils/handleAssetMediaType';
 import { AssetOwnerCard } from '../AssetOwnerCard';
 import {
   AssetCardContainer,
@@ -17,7 +18,7 @@ export function AssetCard({
 }: IAssetCard) {
   return (
     <AssetCardContainer onClick={clickFunction}>
-      <img src={!!asset.image_url ? asset.image_url : asset.asset_contract.image_url} alt={asset.name} />
+      {handleAssetMediaType(asset)}
       <AssetCardInfos>
         <AssetCardTitle>{asset.name}</AssetCardTitle>
         <AssetOwnerCard

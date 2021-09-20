@@ -20,6 +20,10 @@ export function handleAssetMediaType(asset: IAssets) {
   }
 
   if (asset.image_url) {
+    if (asset.image_url.match(/.mp4|avi|wvm/i)) {
+      return <video src={asset.image_url} autoPlay loop />
+    }
+
     return <img src={asset.image_url} alt={asset.name} />
   }
 }

@@ -16,7 +16,7 @@ export const AssetCardContainer = styled.section`
   margin-bottom: 1.875rem;
 
 
-  > img {
+  > img, video, iframe {
     width: 16rem;
     height: 16rem;
 
