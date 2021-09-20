@@ -1,5 +1,5 @@
 import { IAssets } from '../../models/types';
-import { handleAssetMediaType } from '../../utils/handleAssetMediaType';
+import { handleVideoAndImgAssetMediaType } from '../../utils/handleAssetMediaType';
 import { AssetOwnerCard } from '../AssetOwnerCard';
 import {
   AssetCardContainer,
@@ -18,7 +18,7 @@ export function AssetCard({
 }: IAssetCard) {
   return (
     <AssetCardContainer onClick={clickFunction}>
-      {handleAssetMediaType(asset)}
+      {handleVideoAndImgAssetMediaType(asset)}
       <AssetCardInfos>
         <AssetCardTitle>{asset.name}</AssetCardTitle>
         <AssetOwnerCard
