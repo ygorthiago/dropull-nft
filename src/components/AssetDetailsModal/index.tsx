@@ -12,7 +12,7 @@ import {
   AssetPriceContainer
 } from './styles';
 import { AssetOwnerCard } from '../AssetOwnerCard';
-import { handleAssetMediaType } from '../../utils/handleAssetMediaType';
+import { handleAllAssetMediaType } from '../../utils/handleAssetMediaType';
 export function AssetDetailsModal ({
   isOpen,
   setIsOpen,
@@ -24,7 +24,7 @@ export function AssetDetailsModal ({
         <AssetDetailsContainer>
         <IoMdClose onClick={() => setIsOpen(false)} />
         <AssetDetailsTitle>{asset.name}</AssetDetailsTitle>
-        {handleAssetMediaType(asset)}
+        {handleAllAssetMediaType(asset)}
       
         <AssetDetailsInfos>         
           <legend>{asset.description}</legend>

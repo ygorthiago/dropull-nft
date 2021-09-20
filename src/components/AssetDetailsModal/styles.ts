@@ -15,8 +15,6 @@ export const AssetDetailsContainer = styled.section`
 
   > img, video, iframe {
     width: 21rem;
-    height:100%;
-    height: 21rem;
 
     border-radius: 1.5rem;
     padding: 0.3rem;
