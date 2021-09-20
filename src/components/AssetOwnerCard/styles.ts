@@ -21,6 +21,11 @@ export const AssetOwnerCardContainer = styled(Link)`
     font-size: 0.7rem;
     line-height: 1.75rem;
     letter-spacing: 0.75px;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   transition: all 0.5s;

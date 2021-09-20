@@ -45,4 +45,10 @@ export const AssetCardTitle = styled.h3`
   font-size: 1.25rem;
   line-height: 2rem;
   letter-spacing: 0.01em;
+  height:50px;
+  line-height: 1.25;
+  display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+  overflow: hidden;
 `
