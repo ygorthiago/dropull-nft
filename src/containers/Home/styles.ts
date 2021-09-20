@@ -39,7 +39,10 @@ export const TrendingAssetsList = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  
+
+  > section {
+    margin-bottom: 1.875rem;
+  }
 
   @media (min-width: 768px) {
     display: flex;

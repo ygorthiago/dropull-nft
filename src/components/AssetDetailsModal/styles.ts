@@ -47,7 +47,7 @@ export const AssetDetailsTitle = styled.h3`
   font-size: 1.25rem;
   line-height: 2rem;
   letter-spacing: 0.01em;
-  padding: 20px;
+  padding: 0 20px 20px 20px;
 `
 
 export const AssetPriceContainer = styled.div`

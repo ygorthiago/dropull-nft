@@ -34,10 +34,11 @@ const Modal = ({ children, isOpen, setIsOpen }: IModalProps) => {
           borderRadius: '8px',
           width: '25rem',
           border: 'none',
-          padding: '0'
+          padding: '0',
         },
         overlay: {
           backgroundColor: '#121214e6',
+          zIndex: 999,
         },
       }}
     >

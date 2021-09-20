@@ -6,6 +6,7 @@ import { UserProfileCard } from '../UserProfileCard';
 import { SeachButton, SearchUserModalContainer } from './styles';
 import { IoMdClose } from 'react-icons/io'
 import SearchInput from '../SearchInput';
+import { Loading } from '../Loading';
 
 export function SearchUserModal ({
   isOpen,
@@ -14,6 +15,7 @@ export function SearchUserModal ({
   const [address, setAddress] = useState('');
   const [userData, setUserData] = useState<IUserData | undefined>();
   const [hasError, setHasError] = useState<string | undefined>();
+  const [isLoading, setIsLoading] = useState(false)
 
   function closeModal() {
     setUserData(undefined)
@@ -23,10 +25,13 @@ export function SearchUserModal ({
 
   function handleSubmit() {
     setUserData(undefined)
+    setIsLoading(true)
       api.get(`/asset_contract/${address}`)
       .then((response) => {
         setUserData(response.data)
         setHasError(undefined)
+        setIsLoading(false)
+
       }).catch((err) => {
         if ((err as Error).message.includes("404")){
           setHasError('notfound')
@@ -35,6 +40,7 @@ export function SearchUserModal ({
         }
 
         setUserData(undefined)
+        setIsLoading(false)
       })  
   }
 
@@ -43,7 +49,7 @@ export function SearchUserModal ({
       <SearchUserModalContainer>
         <IoMdClose onClick={() => closeModal()} />
         <SearchInput placeholder="Seach users by address" autoFocus onChange={e => setAddress(e.target.value)}/>
-        <SeachButton type="button" onClick={() => handleSubmit()}>Search address</SeachButton>
+        <SeachButton type="button" onClick={() => handleSubmit()}>{isLoading ? <Loading /> : 'Search by address'}</SeachButton>
           {userData && (<UserProfileCard userData={userData} address={address} />)}
           {hasError === 'notfound' && <h3>Address not found</h3>}
           {hasError === 'servererror' && <h3>Some error occurred. Please, try again</h3>}

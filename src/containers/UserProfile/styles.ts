@@ -22,7 +22,7 @@ export const GoBackContainer = styled.span`
     align-items: center;
     color: var(--radioactiveGreen);
     cursor: pointer;
-    z-index: 10;
+    z-index: 1;
 
     svg {
       margin: 0;
@@ -33,7 +33,6 @@ export const GoBackContainer = styled.span`
   @media (min-width: 768px) {
     width: 768px;
     margin-left: 0;
-
   }
 `
 
@@ -67,7 +66,6 @@ export const UserProfileCardInfos = styled.section`
   align-items: center;
   margin-top: -4.125rem;
   padding: 0 1.25rem;
-
   img {
     width: 8.125rem;
     height: 8.125rem;
@@ -121,7 +119,10 @@ export const CollectionList = styled.div`
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  
+
+  > section {
+    margin-bottom: 1.875rem;
+  }
 
   @media (min-width: 768px) {
     display: flex;

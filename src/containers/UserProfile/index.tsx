@@ -13,6 +13,7 @@ import { AssetDetailsModal } from '../../components/AssetDetailsModal';
 import { IAssets, IUserCollection, IUserData } from '../../models/types'
 import { Link, useParams } from 'react-router-dom';
 import { IoChevronBack } from 'react-icons/io5'
+import { Loading } from '../../components/Loading';
 
 interface IParams {
   address: string
@@ -22,6 +23,7 @@ export function UserProfile() {
   const [userData, setUserData] = useState<IUserData | undefined>();
   const [userCollection, setUserCollection] = useState<IUserCollection | undefined>()
   const [selectedAsset, setSelectedAsset] = useState<IAssets | undefined>()
+  const [isLoading, setIsLoading] = useState(false)
 
   const [isOpen, setIsOpen] = useState(false)
   const { address } = useParams<IParams>();
@@ -32,6 +34,7 @@ export function UserProfile() {
   }, [])
 
   useEffect(() => {
+    setIsLoading(true)
     api.get(`/asset_contract/${address}`)
       .then((response)  => {
         setUserData(response.data)
@@ -43,6 +46,7 @@ export function UserProfile() {
           }
         }).then(response => {
             setUserCollection(response.data)
+            setIsLoading(false)
           })
       })
   }, [address])
@@ -52,9 +56,7 @@ export function UserProfile() {
       {userData && (
       <>
         <UserProfileCardContainer>
-          <div>
-            <img src={userData.collection.banner_image_url} alt="" />
-          </div>
+          <img src={userData.collection.banner_image_url} alt="" />
           <GoBackContainer>
             <Link to='/'>
               <IoChevronBack />
@@ -62,13 +64,13 @@ export function UserProfile() {
             </Link>
           </GoBackContainer>
           <UserProfileCardInfos>
-            <img
-              src={userData.collection.large_image_url 
-                ? userData.collection.large_image_url 
-                : userData.collection.image_url
-              }
-              alt={userData.name} 
-            />
+              <img
+                src={userData.collection.large_image_url 
+                  ? userData.collection.large_image_url 
+                  : userData.collection.image_url
+                }
+                alt={userData.name} 
+              />
             <h2>{userData.name}</h2>
             <legend>{userData.description}</legend>
           </UserProfileCardInfos>
@@ -76,6 +78,7 @@ export function UserProfile() {
         <CollectionContainer>
           <h2>Main NFTs</h2>
           <CollectionList>
+          {isLoading && <Loading />}
             {userCollection && userCollection.assets.map((asset) => {
               return (
                 asset.name &&

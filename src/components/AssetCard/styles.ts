@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const AssetCardContainer = styled.section`
-  height: 25rem;
+  height: 25.5rem;
   width: 21.438rem;
   display: flex;
   flex-direction: column;
@@ -13,11 +13,9 @@ export const AssetCardContainer = styled.section`
   border-radius: 2rem;
 
   cursor: pointer;
-  margin-bottom: 1.875rem;
-
 
   > img, video {
-    width: 16rem;
+    max-width: 16rem;
     height: 16rem;
 
     border-radius: 1.5rem;
@@ -38,7 +36,6 @@ export const AssetCardInfos = styled.div`
   justify-content: flex-start;
   align-items: flex-start;
   padding: 0.62rem 1.25rem;
-
 `
 
 export const AssetCardTitle = styled.h3`
