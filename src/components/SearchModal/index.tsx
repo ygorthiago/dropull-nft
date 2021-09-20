@@ -1,11 +1,11 @@
 import { useState } from 'react';
-import { SearchInput } from '../../containers/Home/styles';
 import { IAssetModal, IUserData } from '../../models/types';
 import api from '../../service/api';
 import Modal from '../Modal';
 import { UserProfileCard } from '../UserProfileCard';
 import { SeachButton, SearchUserModalContainer } from './styles';
 import { IoMdClose } from 'react-icons/io'
+import SearchInput from '../SearchInput';
 
 export function SearchUserModal ({
   isOpen,
@@ -17,6 +17,7 @@ export function SearchUserModal ({
 
   function closeModal() {
     setUserData(undefined)
+    setHasError(undefined)
     setIsOpen(!isOpen);
   }
 

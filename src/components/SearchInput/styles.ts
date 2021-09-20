@@ -5,7 +5,6 @@ export const SearchInputSection = styled.div`
   justify-content: center;
   align-items: center;  
   height: 80px;
-  margin-bottom: 30px;
 
   input {
     margin: 30px;
