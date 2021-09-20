@@ -9,6 +9,7 @@ export const AssetOwnerCardContainer = styled(Link)`
   background-color: var(--darkGray);
   border-radius: 52px;
   padding: 0 10px 0 1px;
+  height: 2.5rem;
 
   img{
     width: 2.5rem;
