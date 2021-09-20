@@ -12,6 +12,7 @@ import {
   AssetPriceContainer
 } from './styles';
 import { AssetOwnerCard } from '../AssetOwnerCard';
+import { handleAssetMediaType } from '../../utils/handleAssetMediaType';
 export function AssetDetailsModal ({
   isOpen,
   setIsOpen,
@@ -23,11 +24,7 @@ export function AssetDetailsModal ({
         <AssetDetailsContainer>
         <IoMdClose onClick={() => setIsOpen(false)} />
         <AssetDetailsTitle>{asset.name}</AssetDetailsTitle>
-        {!asset.animation_url 
-          ? <img src={!!asset.image_url ? asset.image_url : asset.asset_contract.image_url} alt="" />
-          : asset.animation_url.match(/.mp4|avi|wvm/i) ? <video src={asset.animation_url} autoPlay loop /> 
-            : <iframe title={asset.name} src={asset.animation_url }></iframe>
-        }
+        {handleAssetMediaType(asset)}
       
         <AssetDetailsInfos>         
           <legend>{asset.description}</legend>
