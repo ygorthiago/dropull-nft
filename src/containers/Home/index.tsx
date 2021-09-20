@@ -21,7 +21,7 @@ export function HomePage() {
   useEffect(() => {
     api.get('/assets', {
       params: {
-        order_by: 'sale_date',
+        order_by: 'sale_count',
         order_direction: 'desc',
         offset: 0,
         limit: 20,
@@ -33,6 +33,7 @@ export function HomePage() {
 
   return (
     <HomePageContainer>
+      <h1>Dropull</h1>
       <SearchInput placeholder="Seach users by address" onClick={() => setIsSearchOpen(true)} />
       <TrendingAssetsContainer>
         <h2>Trending NFTs</h2>

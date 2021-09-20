@@ -6,24 +6,9 @@ export const HomePageContainer = styled.article`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
-export const SearchInput = styled.input`
-  margin: 30px;
-  width: 20.438rem;
-  height: 2.5rem;
-  border-radius: 0.5rem;
-  background-color: var(--darkGray);
-  color: var(--white);
-  border: none;
-  padding: 12px;
 
-  &::placeholder { 
-    color: var(--white);
-    opacity: 1; 
-  }
-
-  &:focus, input:focus{
-    outline: none;
+  h1 {
+    padding-top: 1rem;
   }
 `
 
