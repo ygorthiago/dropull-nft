@@ -9,7 +9,6 @@ import {
 } from './styles';
 import { AssetCard } from '../../components/AssetCard';
 import { AssetDetailsModal } from '../../components/AssetDetailsModal';
-import { IUserData } from '../../models/types'
 import { Link, useParams } from 'react-router-dom';
 import { IoChevronBack } from 'react-icons/io5'
 import { Loading } from '../../components/Loading';
