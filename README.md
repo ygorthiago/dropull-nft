@@ -2,7 +2,6 @@
 
 ## <a href="https://dropull-nft.vercel.app/" target="_blank">Click here</a> to access Dropull deployed application
 
-<br>
 
 ## 🎲 Running project
 
