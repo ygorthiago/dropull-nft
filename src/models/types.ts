@@ -35,6 +35,27 @@ interface IAssetContract {
   address: string;
 }
 
+export interface ISalesHistory {
+  asset_events: IAssetEvents[]
+}
+
+interface IAssetEvents {
+  payment_token: {
+    eth_price: string
+  };
+  quantity: string;
+  seller: {
+    user: {
+      username: string
+    }
+  };
+  winner_account: {
+    user: {
+      username: string
+    }
+  };
+}
+
 export interface IAssetModal {
   isOpen: boolean; 
   setIsOpen: (isOpen: boolean) => void;
