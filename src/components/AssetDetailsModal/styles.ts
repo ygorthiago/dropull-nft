@@ -55,6 +55,7 @@ export const AssetPriceContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  margin-top: 1rem;
 
   h3 {
     margin-bottom: 0.5rem;
@@ -84,3 +85,16 @@ export const AssetPrice = styled.div`
     }
   }
 ` 
+
+export const LastSalesContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 1rem;
+  row-gap: 1rem;
+
+  h3 {
+    margin-bottom: 0.5rem;
+  }
+`
