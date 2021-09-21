@@ -69,7 +69,7 @@ export function UserProfile() {
                   ? userData.collection.large_image_url 
                   : userData.collection.image_url
                 }
-                alt={userData.name} 
+                alt="" 
               />
             <h2>{userData.name}</h2>
             <legend>{userData.description}</legend>
@@ -79,7 +79,7 @@ export function UserProfile() {
           <h2>Main NFTs</h2>
           <CollectionList>
           {isLoading && <Loading />}
-            {userCollection && userCollection.assets.map((asset) => {
+            {userCollection?.assets.length ? userCollection.assets.map((asset) => {
               return (
                 asset.name &&
                 <AssetCard 
@@ -88,7 +88,7 @@ export function UserProfile() {
                   clickFunction={() => openAssetModal(asset)}
                 />
               )
-            })}
+            }) : <h2>Nothing to see here</h2>}
           </CollectionList>
         </CollectionContainer>
       </>

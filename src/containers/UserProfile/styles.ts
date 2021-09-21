@@ -66,12 +66,14 @@ export const UserProfileCardInfos = styled.section`
   align-items: center;
   margin-top: -4.125rem;
   padding: 0 1.25rem;
+  
   img {
     width: 8.125rem;
     height: 8.125rem;
     border-radius: 50%;
     box-shadow: 0 0 0 3pt var(--darkerGrey);
     border: 3px solid var(--radioactiveGreen);
+    background-color: var(--darkGray);
   }
 
   h2 {
