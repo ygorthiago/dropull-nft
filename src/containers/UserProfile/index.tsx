@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import { useEffect} from 'react';
 import { 
   UserProfileContainer, 
   UserProfileCardContainer,
@@ -8,55 +8,51 @@ import {
   GoBackContainer
 } from './styles';
 import { AssetCard } from '../../components/AssetCard';
-import api from '../../service/api';
 import { AssetDetailsModal } from '../../components/AssetDetailsModal';
-import { IAssets, IUserCollection, IUserData } from '../../models/types'
+import { IUserData } from '../../models/types'
 import { Link, useParams } from 'react-router-dom';
 import { IoChevronBack } from 'react-icons/io5'
 import { Loading } from '../../components/Loading';
+import { useSelector } from 'react-redux';
+import { IState } from '../../store';
+import { useDropull } from '../../hooks/dropullHook';
+import { IAssetReducer } from '../../store/modules/assets/types';
+import { IProfileReducer } from '../../store/modules/profile/types';
 
 interface IParams {
   address: string
 }
 
 export function UserProfile() {
-  const [userData, setUserData] = useState<IUserData | undefined>();
-  const [userCollection, setUserCollection] = useState<IUserCollection | undefined>()
-  const [selectedAsset, setSelectedAsset] = useState<IAssets | undefined>()
-  const [isLoading, setIsLoading] = useState(false)
-
-  const [isOpen, setIsOpen] = useState(false)
   const { address } = useParams<IParams>();
+  const { profile } = useSelector<IState, IProfileReducer>(state => state.profile)
+  const { assetsList, isLoading } = useSelector<IState, IAssetReducer>(state => state.assets)
 
-  const openAssetModal = useCallback((asset: IAssets) => {
-    setIsOpen(true)
-    setSelectedAsset(asset)
-  }, [])
+  const { 
+    getProfileData,
+    isAssetOpen,
+    setIsAssetOpen,
+    selectedAsset, 
+    openAssetModal,
+  } = useDropull()
 
   useEffect(() => {
-    setIsLoading(true)
-    api.get(`/asset_contract/${address}`)
-      .then((response)  => {
-        setUserData(response.data)
-        api.get('/assets', {
-          params: {
-            collection: response.data.collection.slug,
-            order_by: 'sale_price',
-            order_direction: 'desc'
-          }
-        }).then(response => {
-            setUserCollection(response.data)
-            setIsLoading(false)
-          })
-      })
-  }, [address])
+    const queryParams = {
+      order_by: 'sale_price',
+      order_direction: 'desc',
+      offset: 0,
+      limit: 20,
+    }
+
+    getProfileData({ address, getAssetParams: queryParams })
+  }, [address, getProfileData])
 
   return (
     <UserProfileContainer>
-      {userData && (
+      {profile.collection && (
       <>
         <UserProfileCardContainer>
-          <img src={userData.collection.banner_image_url} alt="" />
+          <img src={profile.collection.banner_image_url} alt="" />
           <GoBackContainer>
             <Link to='/'>
               <IoChevronBack />
@@ -65,21 +61,21 @@ export function UserProfile() {
           </GoBackContainer>
           <UserProfileCardInfos>
               <img
-                src={userData.collection.large_image_url 
-                  ? userData.collection.large_image_url 
-                  : userData.collection.image_url
+                src={profile.collection.large_image_url 
+                  ? profile.collection.large_image_url 
+                  : profile.collection.image_url
                 }
                 alt="" 
               />
-            <h2>{userData.name}</h2>
-            <legend>{userData.description}</legend>
+            <h2>{profile.name}</h2>
+            <legend>{profile.description}</legend>
           </UserProfileCardInfos>
         </UserProfileCardContainer>
         <CollectionContainer>
           <h2>Main NFTs</h2>
-          <CollectionList>
+          <CollectionList isLoading={isLoading}>
           {isLoading && <Loading />}
-            {userCollection?.assets.length ? userCollection.assets.map((asset) => {
+            {!!assetsList.length && assetsList.map((asset) => {
               return (
                 asset.name &&
                 <AssetCard 
@@ -88,12 +84,13 @@ export function UserProfile() {
                   clickFunction={() => openAssetModal(asset)}
                 />
               )
-            }) : <h2>Nothing to see here</h2>}
+            })}
+            {!assetsList.length && !isLoading && <h2>Nothing to see here</h2>}
           </CollectionList>
         </CollectionContainer>
       </>
       )}
-      <AssetDetailsModal isOpen={isOpen} setIsOpen={setIsOpen} asset={selectedAsset} />
+      <AssetDetailsModal isOpen={isAssetOpen} setIsOpen={setIsAssetOpen} asset={selectedAsset} />
     </UserProfileContainer>
   )
 }

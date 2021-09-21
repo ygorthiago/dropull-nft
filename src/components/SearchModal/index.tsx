@@ -1,58 +1,38 @@
 import { useState } from 'react';
-import { IAssetModal, IUserData } from '../../models/types';
-import api from '../../service/api';
+import { ISearchModal } from '../../models/types';
 import Modal from '../Modal';
 import { UserProfileCard } from '../UserProfileCard';
 import { SeachButton, SearchUserModalContainer } from './styles';
 import { IoMdClose } from 'react-icons/io'
 import SearchInput from '../SearchInput';
 import { Loading } from '../Loading';
+import { useDropull } from '../../hooks/dropullHook';
+import { useSelector } from 'react-redux';
+import { IState } from '../../store';
+import { IProfileReducer } from '../../store/modules/profile/types';
 
 export function SearchUserModal ({
   isOpen,
   setIsOpen,
-}: IAssetModal) {
+}: ISearchModal) {
   const [address, setAddress] = useState('');
-  const [userData, setUserData] = useState<IUserData | undefined>();
-  const [hasError, setHasError] = useState<string | undefined>();
-  const [isLoading, setIsLoading] = useState(false)
+  const userProfile = useSelector<IState, IProfileReducer>(state => state.profile)
 
-  function closeModal() {
-    setUserData(undefined)
-    setHasError(undefined)
-    setIsOpen(!isOpen);
-  }
+  const { getProfileByAddress } = useDropull()
 
   function handleSubmit() {
-    setUserData(undefined)
-    setIsLoading(true)
-      api.get(`/asset_contract/${address}`)
-      .then((response) => {
-        setUserData(response.data)
-        setHasError(undefined)
-        setIsLoading(false)
-
-      }).catch((err) => {
-        if ((err as Error).message.includes("404")){
-          setHasError('notfound')
-        } else {
-          setHasError('servererror')
-        }
-
-        setUserData(undefined)
-        setIsLoading(false)
-      })  
+    getProfileByAddress(address);
   }
 
   return (
-    <Modal isOpen={isOpen} setIsOpen={closeModal}>
+    <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <SearchUserModalContainer>
-        <IoMdClose onClick={() => closeModal()} />
+        <IoMdClose onClick={() => setIsOpen()} />
         <SearchInput placeholder="Seach users by address" autoFocus onChange={e => setAddress(e.target.value)}/>
-        <SeachButton type="button" onClick={() => handleSubmit()}>{isLoading ? <Loading /> : 'Search by address'}</SeachButton>
-          {userData && (<UserProfileCard userData={userData} address={address} />)}
-          {hasError === 'notfound' && <h3>Address not found</h3>}
-          {hasError === 'servererror' && <h3>Some error occurred. Please, try again</h3>}
+        <SeachButton type="button" onClick={() => handleSubmit()}>{userProfile.isLoading ? <Loading /> : 'Search by address'}</SeachButton>
+          {userProfile.profile.name && (<UserProfileCard userData={userProfile.profile} address={address} />)}
+          {userProfile.errorMessage === 'notfound' && <h3>Address not found</h3>}
+          {userProfile.errorMessage === 'servererror' && <h3>Some error occurred. Please, try again</h3>}
       </SearchUserModalContainer>
     </Modal>
   );

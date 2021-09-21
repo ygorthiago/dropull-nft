@@ -35,11 +35,11 @@ interface IAssetContract {
   address: string;
 }
 
-export interface ISalesHistory {
+export interface IEventsHistory {
   asset_events: IAssetEvents[]
 }
 
-interface IAssetEvents {
+export interface IAssetEvents {
   payment_token: {
     eth_price: string
   };
@@ -59,5 +59,11 @@ interface IAssetEvents {
 export interface IAssetModal {
   isOpen: boolean; 
   setIsOpen: (isOpen: boolean) => void;
+  asset?: IAssets;
+}
+
+export interface ISearchModal {
+  isOpen: boolean; 
+  setIsOpen: () => void;
   asset?: IAssets;
 }

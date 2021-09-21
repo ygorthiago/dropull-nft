@@ -33,7 +33,7 @@ export const TrendingAssetsContainer = styled.section`
   }
 `
 
-export const TrendingAssetsList = styled.div`
+export const TrendingAssetsList = styled.div<{isLoading: boolean}>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -47,8 +47,9 @@ export const TrendingAssetsList = styled.div`
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: ${props => props.isLoading ? 'center' : 'space-between'};
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
   }
 `

@@ -115,7 +115,7 @@ export const CollectionContainer = styled.section`
   }
 `
 
-export const CollectionList = styled.div`
+export const CollectionList = styled.div<{isLoading: boolean}>`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -129,9 +129,10 @@ export const CollectionList = styled.div`
   @media (min-width: 768px) {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: ${props => props.isLoading ? 'center' : 'space-between'};
     align-items: center;
     flex-wrap: wrap;
+    width: 100%;
   }
 `
 

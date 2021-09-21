@@ -1,4 +1,4 @@
-import { IAssetModal, ISalesHistory } from '../../models/types';
+import { IAssetModal, IEventsHistory } from '../../models/types';
 import { IoMdClose } from 'react-icons/io'
 import { SiEthereum } from 'react-icons/si'
 import { BiDollar } from 'react-icons/bi'
@@ -14,29 +14,24 @@ import {
 } from './styles';
 import { AssetOwnerCard } from '../AssetOwnerCard';
 import { handleAllAssetMediaType } from '../../utils/handleAssetMediaType';
-import { useEffect, useState } from 'react';
-import api from '../../service/api';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { IState } from '../../store';
+import { useDropull } from '../../hooks/dropullHook';
 
 export function AssetDetailsModal ({
   isOpen,
   setIsOpen,
   asset
 }: IAssetModal) {
-  const [salesHistory, setSalesHistory] = useState<ISalesHistory | undefined>();
+  const { asset_events } = useSelector<IState, IEventsHistory>(state => state.assetEvents)
+  const { getLastSales } = useDropull()
 
   useEffect(() => {
     if (asset) {
-      api.get('/events', {
-        params: {
-          asset_contract_address: asset.asset_contract.address,
-          event_type: 'successful',
-          limit: 3,
-        }
-      }).then((response) => {
-        setSalesHistory(response.data)
-      })
+      getLastSales(asset.asset_contract.address)
     }
-  }, [asset])
+  }, [asset, getLastSales])
 
   return (
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -69,11 +64,11 @@ export function AssetDetailsModal ({
             </AssetPriceContainer>
           )}
 
-          {salesHistory && 
+          {asset_events && 
             <LastSalesContainer>
-              {!!salesHistory.asset_events.length && <h3>Last sales</h3>}
-              {salesHistory.asset_events.map(sale => 
-                <AssetPrice>
+              {!!asset_events.length && <h3>Last sales</h3>}
+              {asset_events.map((sale, index) => 
+                <AssetPrice key={index}>
                   <div>
                     <SiEthereum />
                     <p>{+sale.payment_token.eth_price}</p>

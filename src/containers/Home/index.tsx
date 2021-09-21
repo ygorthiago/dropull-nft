@@ -1,52 +1,48 @@
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { AssetCard } from "../../components/AssetCard";
 import { AssetDetailsModal } from "../../components/AssetDetailsModal";
 import { Loading } from "../../components/Loading";
 import SearchInput from "../../components/SearchInput";
 import { SearchUserModal } from "../../components/SearchModal";
-import { IAssets, IUserCollection } from "../../models/types";
-import api from "../../service/api";
+import { IState } from "../../store";
+import { IAssetReducer } from "../../store/modules/assets/types";
+import { useDropull } from "../../hooks/dropullHook";
 import { HomePageContainer, TrendingAssetsContainer, TrendingAssetsList } from "./styles";
 
 export function HomePage() {
-  const [trendingAssets, setTrendingAssets] = useState<IUserCollection | undefined>();
-  const [isAssetOpen, setIsAssetOpen] = useState(false)
-  const [isSearchOpen, setIsSearchOpen] = useState(false)
-  const [selectedAsset, setSelectedAsset] = useState<IAssets | undefined>()
-  const [isLoading, setIsLoading] = useState(false)
-  
-  const openAssetModal = useCallback((asset: IAssets) => {
-    setIsAssetOpen(true)
-    setSelectedAsset(asset)
-  }, [])
+  const { assetsList, isLoading } = useSelector<IState, IAssetReducer>(state => state.assets)
+  const { 
+    getTrendingAssets,
+    isAssetOpen,
+    setIsAssetOpen,
+    isSearchOpen,
+    selectedAsset, 
+    openAssetModal,
+    closeSearchModal,
+  } = useDropull()
 
   useEffect(() => {
-    setIsLoading(true)
-    api.get('/assets', {
-      params: {
-        order_by: 'sale_count',
-        order_direction: 'desc',
-        offset: 0,
-        limit: 20,
-      }
-    }).then((response) => {
-        setTrendingAssets(response.data)
-        setIsLoading(false)
+    getTrendingAssets({
+      order_by: 'sale_count',
+      order_direction: 'desc',
+      offset: 0,
+      limit: 20,
     })
-  }, [])
+  }, [getTrendingAssets])
 
   return (
     <HomePageContainer>
       <h1>Dropull</h1>
       <SearchInput 
         placeholder="Seach users by address" 
-        onClick={() => setIsSearchOpen(true)} 
+        onClick={() => closeSearchModal()} 
       />
       <TrendingAssetsContainer>
         <h2>Trending NFTs</h2>
-        <TrendingAssetsList>
+        <TrendingAssetsList isLoading={isLoading}>
           {isLoading && <Loading />}
-          {trendingAssets && trendingAssets.assets.map(asset => {
+          {assetsList && assetsList.map(asset => {
             return (
               asset.name &&
               <AssetCard 
@@ -64,7 +60,7 @@ export function HomePage() {
         setIsOpen={setIsAssetOpen}
         asset={selectedAsset}
       />
-      <SearchUserModal isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
+      <SearchUserModal isOpen={isSearchOpen} setIsOpen={closeSearchModal} />
     </HomePageContainer>
   )
 }
