@@ -46,13 +46,13 @@ export interface IAssetEvents {
   quantity: string;
   seller: {
     user: {
-      username: string
-    }
+      username: string | null
+    } | null
   };
   winner_account: {
     user: {
-      username: string
-    }
+      username: string | null
+    } | null
   };
 }
 

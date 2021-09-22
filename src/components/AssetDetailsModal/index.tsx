@@ -67,14 +67,19 @@ export function AssetDetailsModal ({
           {asset_events && 
             <LastSalesContainer>
               {!!asset_events.length && <h3>Last sales</h3>}
-              {asset_events.map((sale, index) => 
+              {asset_events.map((sale, index) => {
+                const sellerUsername = (sale.seller.user && sale.seller.user?.username) && sale.seller.user.username
+                const buyerUsername = (sale.winner_account.user && sale.winner_account.user?.username) && sale.winner_account.user.username
+
+                return (
                 <AssetPrice key={index}>
                   <div>
                     <SiEthereum />
                     <p>{+sale.payment_token.eth_price}</p>
                   </div>
-                  <p>{`${sale.seller.user.username ?? 'Unnamed'} selled ${sale.quantity}x to ${sale.winner_account.user.username ?? 'Unnamed'}`}</p>
+                  <p>{`${sellerUsername ?? 'Unnamed'} selled ${sale.quantity}x to ${buyerUsername ?? 'Unnamed'}`}</p>
                 </AssetPrice>
+                )}
               )}
             </LastSalesContainer>
           }
