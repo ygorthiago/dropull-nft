@@ -122,7 +122,7 @@ export const CollectionList = styled.section<{isLoading: boolean}>`
   align-items: center;
   flex-wrap: wrap;
 
-  > section {
+  > div {
     margin-bottom: 1.875rem;
   }
 
