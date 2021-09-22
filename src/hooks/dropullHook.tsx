@@ -116,6 +116,7 @@ export function useDropull(): IUseDropull {
         description: "",
       }
     }))
+    dispatch(getAssets({  assetsList: [], isLoading: true }))
 
     api.get(`/asset_contract/${address}`)
       .then((response)  => {
