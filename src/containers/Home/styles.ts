@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const HomePageContainer = styled.article`
+export const HomePageContainer = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -12,7 +12,7 @@ export const HomePageContainer = styled.article`
   }
 `
 
-export const TrendingAssetsContainer = styled.section`
+export const TrendingAssetsContainer = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -33,7 +33,7 @@ export const TrendingAssetsContainer = styled.section`
   }
 `
 
-export const TrendingAssetsList = styled.div<{isLoading: boolean}>`
+export const TrendingAssetsList = styled.section<{isLoading: boolean}>`
   display: flex;
   flex-direction: column;
   justify-content: center;

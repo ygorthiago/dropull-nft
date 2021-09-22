@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const AssetCardContainer = styled.section`
+export const AssetCardContainer = styled.div`
   height: 25.5rem;
   width: 21.438rem;
   display: flex;

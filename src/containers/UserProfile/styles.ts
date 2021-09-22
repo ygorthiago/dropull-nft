@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const UserProfileContainer = styled.article`
+export const UserProfileContainer = styled.main`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -36,7 +36,7 @@ export const GoBackContainer = styled.span`
   }
 `
 
-export const UserProfileCardContainer = styled.section`
+export const UserProfileCardContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -59,7 +59,7 @@ export const UserProfileCardContainer = styled.section`
   }
 `
 
-export const UserProfileCardInfos = styled.section`
+export const UserProfileCardInfos = styled.header`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -94,7 +94,7 @@ export const UserProfileCardInfos = styled.section`
   }
 `
 
-export const CollectionContainer = styled.section`
+export const CollectionContainer = styled.article`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -115,7 +115,7 @@ export const CollectionContainer = styled.section`
   }
 `
 
-export const CollectionList = styled.div<{isLoading: boolean}>`
+export const CollectionList = styled.section<{isLoading: boolean}>`
   display: flex;
   flex-direction: column;
   justify-content: center;
