@@ -28,7 +28,12 @@ export function SearchUserModal ({
     <Modal isOpen={isOpen} setIsOpen={setIsOpen}>
       <SearchUserModalContainer>
         <IoMdClose onClick={() => setIsOpen()} />
-        <SearchInput placeholder="Seach users by address" autoFocus onChange={e => setAddress(e.target.value)}/>
+        <SearchInput 
+          placeholder="Seach users by address" 
+          data-testid="searchmodal-input" 
+          autoFocus 
+          onChange={e => setAddress(e.target.value)}
+        />
         <SeachButton type="button" onClick={() => handleSubmit()}>{userProfile.isLoading ? <Loading /> : 'Search by address'}</SeachButton>
           {userProfile.profile.name && (<UserProfileCard userData={userProfile.profile} address={address} />)}
           {userProfile.errorMessage === 'notfound' && <h3>Address not found</h3>}

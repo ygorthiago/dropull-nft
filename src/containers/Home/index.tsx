@@ -37,6 +37,7 @@ export function HomePage() {
       <SearchInput 
         placeholder="Seach users by address" 
         onClick={() => closeSearchModal()} 
+        data-testid="homepage-search-input"
       />
       <TrendingAssetsContainer>
         <h2>Trending NFTs</h2>
